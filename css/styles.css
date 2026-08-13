@@ -1,0 +1,572 @@
+/* ==========================================================================
+   OKF vs. RAG Interactive Explainer — Interactive Modernist Design System
+   ========================================================================== */
+
+:root {
+  /* Interactive Modernist Color Palette */
+  --canvas-bg: #F4F1EA;          /* Warm Architectural Canvas */
+  --canvas-subtle: #EAE6DC;      /* Subtle Geometric Grid / Contrast Tone */
+  --surface-card: #FFFFFF;       /* Crisp White Card Surface */
+  --surface-muted: #F8F6F0;      /* Muted Surface */
+  --structural-ink: #1A1A1A;     /* Heavy Structural Black for Borders & Text */
+  --ink-muted: #4A4A4A;          /* Muted Secondary Text */
+  --ink-subtle: #717171;         /* Tertiary Text / Labels */
+
+  /* Primary Architectural Palette */
+  --cadmium-red: #E03C31;        /* Primary Cadmium Red */
+  --cobalt-blue: #144B9E;        /* Primary Cobalt Blue */
+  --goldenrod-yellow: #F7C114;   /* Primary Goldenrod Yellow */
+
+  /* Supporting Functional Accents */
+  --forest-green: #15803D;       /* Pass / Grounded / Approved */
+  --deep-purple: #6B21A8;        /* Hybrid Neuro-Symbolic */
+  --dark-amber: #D97706;         /* Warning / Manual Escalation */
+
+  /* Hard Offset Drop Shadows */
+  --shadow-brutal-xs: 2px 2px 0px #1A1A1A;
+  --shadow-brutal-sm: 3px 3px 0px #1A1A1A;
+  --shadow-brutal-md: 4px 4px 0px #1A1A1A;
+  --shadow-brutal-lg: 8px 8px 0px #1A1A1A;
+  --shadow-brutal-xl: 12px 12px 0px #1A1A1A;
+  --shadow-brutal-red: 4px 4px 0px #E03C31;
+  --shadow-brutal-blue: 4px 4px 0px #144B9E;
+  --shadow-brutal-yellow: 4px 4px 0px #F7C114;
+
+  /* Typography */
+  --font-heading: 'Jost', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ==========================================================================
+   0px Corner Radius — Absolute Architectural Geometric Enforcement
+   ========================================================================== */
+*, *::before, *::after {
+  border-radius: 0px !important;
+  box-sizing: border-box;
+}
+
+/* Base Document & Body Styles */
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background-color: var(--canvas-bg);
+  color: var(--structural-ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  max-width: 100vw;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#global-scenario-select {
+  max-width: 100%;
+}
+
+/* Headings Typography */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+.heading-tracked {
+  font-family: var(--font-heading);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   Architectural Surface & Card Components
+   ========================================================================== */
+.bauhaus-card {
+  background-color: var(--surface-card);
+  border: 3px solid var(--structural-ink);
+  box-shadow: var(--shadow-brutal-lg);
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bauhaus-card-sm {
+  background-color: var(--surface-card);
+  border: 2px solid var(--structural-ink);
+  box-shadow: var(--shadow-brutal-md);
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bauhaus-panel {
+  background-color: var(--surface-card);
+  border: 3px solid var(--structural-ink);
+  box-shadow: var(--shadow-brutal-lg);
+}
+
+.bauhaus-panel-subtle {
+  background-color: var(--surface-muted);
+  border: 2px solid var(--structural-ink);
+}
+
+/* ==========================================================================
+   Architectural Tactile Buttons & Interactive Controls
+   ========================================================================== */
+.bauhaus-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1rem;
+  background-color: var(--surface-card);
+  color: var(--structural-ink);
+  border: 2px solid var(--structural-ink);
+  box-shadow: var(--shadow-brutal-sm);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.1s ease-in-out;
+}
+
+.bauhaus-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-brutal-md);
+}
+
+.bauhaus-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1A1A1A;
+}
+
+.bauhaus-btn-primary {
+  background-color: var(--cobalt-blue);
+  color: #FFFFFF;
+}
+
+.bauhaus-btn-primary:hover {
+  background-color: #0D3470;
+}
+
+.bauhaus-btn-red {
+  background-color: var(--cadmium-red);
+  color: #FFFFFF;
+}
+
+.bauhaus-btn-red:hover {
+  background-color: #B8281F;
+}
+
+.bauhaus-btn-yellow {
+  background-color: var(--goldenrod-yellow);
+  color: var(--structural-ink);
+}
+
+.bauhaus-btn-yellow:hover {
+  background-color: #E5B00D;
+}
+
+.bauhaus-btn-accent {
+  background-color: var(--forest-green);
+  color: #FFFFFF;
+}
+
+.bauhaus-btn-accent:hover {
+  background-color: #166534;
+}
+
+/* ==========================================================================
+   Architectural Badges, Chips & Pills
+   ========================================================================== */
+.bauhaus-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border: 2px solid var(--structural-ink);
+  box-shadow: 2px 2px 0px #1A1A1A;
+  line-height: 1.2;
+}
+
+.bauhaus-badge-red {
+  background-color: var(--cadmium-red);
+  color: #FFFFFF;
+}
+
+.bauhaus-badge-blue {
+  background-color: var(--cobalt-blue);
+  color: #FFFFFF;
+}
+
+.bauhaus-badge-yellow {
+  background-color: var(--goldenrod-yellow);
+  color: var(--structural-ink);
+}
+
+.bauhaus-badge-green {
+  background-color: var(--forest-green);
+  color: #FFFFFF;
+}
+
+.bauhaus-badge-purple {
+  background-color: var(--deep-purple);
+  color: #FFFFFF;
+}
+
+.bauhaus-badge-white {
+  background-color: #FFFFFF;
+  color: var(--structural-ink);
+}
+
+.bauhaus-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 2px solid var(--structural-ink);
+  background-color: #FFFFFF;
+  color: var(--structural-ink);
+  box-shadow: var(--shadow-brutal-sm);
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.bauhaus-chip:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-brutal-md);
+  background-color: var(--canvas-subtle);
+}
+
+.bauhaus-chip:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1A1A1A;
+}
+
+.bauhaus-chip-active {
+  background-color: var(--goldenrod-yellow) !important;
+  color: var(--structural-ink) !important;
+  box-shadow: var(--shadow-brutal-sm) !important;
+}
+
+/* ==========================================================================
+   Inputs & Select Dropdowns
+   ========================================================================== */
+.bauhaus-input, .bauhaus-select {
+  background-color: #FFFFFF;
+  border: 2px solid var(--structural-ink);
+  color: var(--structural-ink);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.45rem 0.75rem;
+  box-shadow: var(--shadow-brutal-sm);
+  transition: all 0.15s ease;
+}
+
+.bauhaus-input:focus, .bauhaus-select:focus {
+  outline: none;
+  border-color: var(--cobalt-blue);
+  box-shadow: var(--shadow-brutal-blue);
+}
+
+/* ==========================================================================
+   Tables & Data Grid
+   ========================================================================== */
+.bauhaus-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 3px solid var(--structural-ink);
+  background-color: #FFFFFF;
+  box-shadow: var(--shadow-brutal-lg);
+}
+
+.bauhaus-table th {
+  background-color: var(--structural-ink);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--structural-ink);
+  border-right: 2px solid #333333;
+}
+
+.bauhaus-table th:last-child {
+  border-right: none;
+}
+
+.bauhaus-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--structural-ink);
+  border-right: 2px solid var(--canvas-subtle);
+  font-size: 0.75rem;
+  color: var(--structural-ink);
+}
+
+.bauhaus-table td:last-child {
+  border-right: none;
+}
+
+.bauhaus-table tr:last-child td {
+  border-bottom: none;
+}
+
+.bauhaus-table tr:hover td {
+  background-color: #FAF8F2;
+}
+
+/* ==========================================================================
+   Dynamic Logic Gate Visualizer Styles
+   ========================================================================== */
+.gate-pass {
+  border: 3px solid var(--forest-green) !important;
+  background-color: rgba(21, 128, 61, 0.08) !important;
+  box-shadow: 4px 4px 0px var(--forest-green) !important;
+}
+
+.gate-blocked {
+  border: 3px solid var(--cadmium-red) !important;
+  background-color: rgba(224, 60, 49, 0.12) !important;
+  box-shadow: 4px 4px 0px var(--cadmium-red) !important;
+  animation: mechanicalClamp 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28) 1;
+}
+
+@keyframes mechanicalClamp {
+  0% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(0.96);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   Animations & Keyframes
+   ========================================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes laserPulse {
+  0%, 100% {
+    stroke-width: 2.5;
+    opacity: 0.8;
+  }
+  50% {
+    stroke-width: 4.5;
+    opacity: 1;
+  }
+}
+
+.animate-laser {
+  animation: laserPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes edgePulse {
+  0% {
+    stroke-dashoffset: 60;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.svg-edge-pulse {
+  stroke-dasharray: 6, 6;
+  animation: edgePulse 1.5s linear infinite;
+}
+
+/* ==========================================================================
+   Architectural Tactile Scrollbars
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--canvas-subtle);
+  border: 1px solid var(--structural-ink);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--structural-ink);
+  border: 1px solid var(--structural-ink);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cadmium-red);
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================================================
+   Custom Range Sliders (Architectural Tactile Mechanical Slider)
+   ========================================================================== */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  background: var(--surface-card);
+  height: 10px;
+  border: 2px solid var(--structural-ink);
+  box-shadow: 2px 2px 0px var(--structural-ink);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -9px;
+  background: var(--goldenrod-yellow);
+  height: 24px;
+  width: 24px;
+  border: 3px solid var(--structural-ink);
+  box-shadow: 2px 2px 0px var(--structural-ink);
+  cursor: grab;
+  transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background-color: var(--cadmium-red);
+}
+
+input[type=range]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+  background-color: var(--cobalt-blue);
+}
+
+/* ==========================================================================
+   Attention Heatmap Visualizer (Gotcha Lab)
+   ========================================================================== */
+.attention-word {
+  display: inline-block;
+  padding: 3px 8px;
+  margin: 3px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  border: 2px solid var(--structural-ink);
+  box-shadow: 2px 2px 0px var(--structural-ink);
+  transition: transform 0.15s ease;
+  cursor: default;
+}
+
+.attention-word:hover {
+  transform: translateY(-2px);
+  z-index: 10;
+}
+
+.attention-high {
+  background-color: var(--cadmium-red);
+  color: #FFFFFF;
+}
+
+.attention-medium {
+  background-color: var(--goldenrod-yellow);
+  color: var(--structural-ink);
+}
+
+.attention-dimmed {
+  background-color: #FFFFFF;
+  color: var(--ink-subtle);
+  border-color: #CCCCCC;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   Hybrid Pipeline & Factory Conveyor Line (Module 5)
+   ========================================================================== */
+.conveyor-belt {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--structural-ink),
+    var(--structural-ink) 12px,
+    #FFFFFF 12px,
+    #FFFFFF 24px
+  );
+  animation: conveyorMove 1.5s linear infinite;
+}
+
+@keyframes conveyorMove {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 48px 0;
+  }
+}
+
+.stage-card {
+  background-color: #FFFFFF;
+  border: 3px solid var(--structural-ink);
+  box-shadow: var(--shadow-brutal-md);
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stage-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-brutal-lg);
+}
+
+.stage-card[aria-selected="true"] {
+  background-color: #FEF9C3;
+  border-color: var(--structural-ink);
+  box-shadow: var(--shadow-brutal-lg);
+}
+
+/* Responsive Overrides */
+@media (max-width: 640px) {
+  .bauhaus-card, .bauhaus-panel {
+    border-width: 2px;
+    box-shadow: var(--shadow-brutal-md);
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OKF vs. RAG: Architectural Interactive Neuro-Symbolic Policy Explainer</title>
+  <meta name="description" content="Interactive Interactive Modernist visual explainer comparing Open Knowledge Format (OKF) and Retrieval-Augmented Generation (RAG) using real-world policy benchmarks from Cymbal Enterprises.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F4F1EA' stroke='%231A1A1A' stroke-width='2'/%3E%3Crect x='4' y='4' width='10' height='10' fill='%23E03C31' stroke='%231A1A1A' stroke-width='1.5'/%3E%3Cpolygon points='26,6 18,22 26,22' fill='%23144B9E' stroke='%231A1A1A' stroke-width='1.5'/%3E%3Ccircle cx='12' cy='22' r='6' fill='%23F7C114' stroke='%231A1A1A' stroke-width='1.5'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Jost, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: {
+              DEFAULT: '#F4F1EA',
+              warm: '#F4F1EA',
+              subtle: '#EAE6DC'
+            },
+            surface: {
+              DEFAULT: '#FFFFFF',
+              card: '#FFFFFF',
+              muted: '#F8F6F0'
+            },
+            ink: {
+              DEFAULT: '#1A1A1A',
+              structural: '#1A1A1A',
+              muted: '#4A4A4A',
+              subtle: '#717171'
+            },
+            bauhaus: {
+              red: '#E03C31',
+              blue: '#144B9E',
+              yellow: '#F7C114',
+              ink: '#1A1A1A',
+              canvas: '#F4F1EA',
+              white: '#FFFFFF',
+              cream: '#EAE6DC',
+              green: '#15803D',
+              purple: '#6B21A8',
+              amber: '#D97706'
+            },
+            brand: {
+              red: '#E03C31',
+              blue: '#144B9E',
+              yellow: '#F7C114',
+              cyan: '#144B9E',
+              emerald: '#15803D',
+              rose: '#E03C31',
+              purple: '#6B21A8',
+              amber: '#D97706'
+            }
+          },
+          fontFamily: {
+            heading: ['Jost', 'Inter', 'system-ui', 'sans-serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+          },
+          boxShadow: {
+            'brutal-xs': '2px 2px 0px #1A1A1A',
+            'brutal-sm': '3px 3px 0px #1A1A1A',
+            'brutal': '4px 4px 0px #1A1A1A',
+            'brutal-lg': '8px 8px 0px #1A1A1A',
+            'brutal-xl': '12px 12px 0px #1A1A1A',
+            'brutal-red': '4px 4px 0px #E03C31',
+            'brutal-blue': '4px 4px 0px #144B9E',
+            'brutal-yellow': '4px 4px 0px #F7C114'
+          },
+          borderWidth: {
+            '3': '3px',
+            '4': '4px',
+            '6': '6px',
+            '8': '8px'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Architectural Design System Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-[#F4F1EA] text-[#1A1A1A] min-h-screen font-sans antialiased selection:bg-[#F7C114] selection:text-[#1A1A1A] flex flex-col relative overflow-x-hidden">
+
+  <!-- Architectural Structural Grid Background -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-30">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1A1A1A_1px,transparent_1px),linear-gradient(to_bottom,#1A1A1A_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+  </div>
+
+  <!-- Header & Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full bg-[#FFFFFF] border-b-4 border-[#1A1A1A] shadow-[0_4px_0px_#1A1A1A] transition-all">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 gap-2 sm:gap-4">
+        
+        <!-- Logo & Title -->
+        <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0 cursor-pointer min-w-0" id="nav-brand-logo" title="OKF vs. RAG Policy Explainer">
+          <!-- Architectural Triad Icon -->
+          <div class="w-8 h-8 sm:w-10 sm:h-10 border-2 border-[#1A1A1A] bg-[#FFFFFF] shadow-[2px_2px_0px_#1A1A1A] sm:shadow-[3px_3px_0px_#1A1A1A] flex items-center justify-center relative p-1 flex-shrink-0">
+            <div class="absolute top-1 left-1 w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 bg-[#E03C31] border border-[#1A1A1A]"></div>
+            <div class="absolute bottom-1 right-1 w-3 h-3 sm:w-4 sm:h-4 bg-[#144B9E] border border-[#1A1A1A] transform rotate-45"></div>
+            <div class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 bg-[#F7C114] border border-[#1A1A1A] z-10"></div>
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span class="font-heading font-black tracking-tight text-[#1A1A1A] text-base sm:text-lg uppercase truncate">OKF vs. RAG</span>
+              <span class="px-1.5 py-0.5 text-[9px] font-mono font-bold tracking-wider uppercase bg-[#144B9E] text-white border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] hidden xl:inline-block">Neuro-Symbolic</span>
+            </div>
+            <p class="text-[10px] text-[#4A4A4A] font-mono font-semibold hidden md:block truncate">Cymbal HR Policy Lab</p>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs (Desktop) -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-1.5 p-0.5 flex-1 justify-end min-w-0" id="nav-tabs">
+          <button data-tab="paradigm-matrix" class="nav-tab active px-2.5 py-1.5 xl:px-3 text-xs font-heading font-bold uppercase tracking-wider text-[#1A1A1A] bg-[#F7C114] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] flex items-center gap-1.5 transition-all flex-shrink-0">
+            <i data-lucide="split" class="w-3.5 h-3.5 text-[#1A1A1A]"></i>
+            <span>1. Matrix</span>
+          </button>
+          <button data-tab="under-the-hood" class="nav-tab px-2.5 py-1.5 xl:px-3 text-xs font-heading font-bold uppercase tracking-wider text-[#1A1A1A] bg-[#FFFFFF] border-2 border-[#1A1A1A] hover:bg-[#F7C114]/20 hover:shadow-[2px_2px_0px_#1A1A1A] flex items-center gap-1.5 transition-all flex-shrink-0">
+            <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#144B9E]"></i>
+            <span>2. Under Hood</span>
+          </button>
+          <button data-tab="dual-track-arena" class="nav-tab px-2.5 py-1.5 xl:px-3 text-xs font-heading font-bold uppercase tracking-wider text-[#1A1A1A] bg-[#FFFFFF] border-2 border-[#1A1A1A] hover:bg-[#F7C114]/20 hover:shadow-[2px_2px_0px_#1A1A1A] flex items-center gap-1.5 transition-all flex-shrink-0">
+            <i data-lucide="activity" class="w-3.5 h-3.5 text-[#E03C31]"></i>
+            <span>3. Live Arena</span>
+          </button>
+          <button data-tab="gotcha-lab" class="nav-tab px-2.5 py-1.5 xl:px-3 text-xs font-heading font-bold uppercase tracking-wider text-[#1A1A1A] bg-[#FFFFFF] border-2 border-[#1A1A1A] hover:bg-[#F7C114]/20 hover:shadow-[2px_2px_0px_#1A1A1A] flex items-center gap-1.5 transition-all flex-shrink-0">
+            <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-[#E03C31]"></i>
+            <span>4. Gotcha Lab</span>
+          </button>
+          <button data-tab="hybrid-pipeline" class="nav-tab px-2.5 py-1.5 xl:px-3 text-xs font-heading font-bold uppercase tracking-wider text-[#1A1A1A] bg-[#FFFFFF] border-2 border-[#1A1A1A] hover:bg-[#F7C114]/20 hover:shadow-[2px_2px_0px_#1A1A1A] flex items-center gap-1.5 transition-all flex-shrink-0">
+            <i data-lucide="git-merge" class="w-3.5 h-3.5 text-[#144B9E]"></i>
+            <span>5. Hybrid</span>
+          </button>
+          <button data-tab="stress-tester" class="nav-tab px-2.5 py-1.5 xl:px-3 text-xs font-heading font-bold uppercase tracking-wider text-[#1A1A1A] bg-[#FFFFFF] border-2 border-[#1A1A1A] hover:bg-[#F7C114]/20 hover:shadow-[2px_2px_0px_#1A1A1A] flex items-center gap-1.5 transition-all flex-shrink-0">
+            <i data-lucide="sliders" class="w-3.5 h-3.5 text-[#D97706]"></i>
+            <span>6. Stress Test</span>
+          </button>
+          <button data-tab="eval-scorecard" class="nav-tab px-2.5 py-1.5 xl:px-3 text-xs font-heading font-bold uppercase tracking-wider text-[#1A1A1A] bg-[#FFFFFF] border-2 border-[#1A1A1A] hover:bg-[#F7C114]/20 hover:shadow-[2px_2px_0px_#1A1A1A] flex items-center gap-1.5 transition-all flex-shrink-0">
+            <i data-lucide="award" class="w-3.5 h-3.5 text-[#15803D]"></i>
+            <span>7. Scorecard</span>
+          </button>
+        </nav>
+
+      </div>
+
+      <!-- Mobile Tab Scroller -->
+      <div class="flex lg:hidden overflow-x-auto py-2 gap-1.5 border-t-2 border-[#1A1A1A] scrollbar-none w-full max-w-full" id="nav-tabs-mobile">
+        <!-- Populated/Cloned via app.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Global Simulation / Playback Control Bar (Shown contextually on interactive simulation tabs) -->
+  <div id="global-playback-bar" class="z-30 w-full bg-[#FFFFFF] border-b-2 sm:border-b-4 border-[#1A1A1A] px-3 sm:px-6 lg:px-8 py-2.5 text-xs shadow-[0_2px_0px_#1A1A1A] transition-all">
+    <div class="max-w-7xl mx-auto w-full flex items-center justify-between flex-wrap gap-3">
+      
+      <!-- Scenario Selector & Active Scenario Preview -->
+      <div class="flex items-center gap-2 flex-wrap min-w-0">
+        <div class="flex items-center gap-1.5 font-heading font-bold text-xs uppercase text-[#1A1A1A] flex-shrink-0">
+          <i data-lucide="layers" class="w-3.5 h-3.5 text-[#144B9E]"></i>
+          <span>Scenario:</span>
+        </div>
+        <div class="relative w-[210px] sm:w-[260px] md:w-[300px]">
+          <select id="global-scenario-select" class="w-full appearance-none bg-[#F4F1EA] border-2 border-[#1A1A1A] rounded-none px-2.5 py-1 pr-7 text-xs font-mono font-bold text-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] hover:bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#144B9E] transition-all cursor-pointer truncate">
+            <!-- Populated dynamically by app.js -->
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1.5 text-[#1A1A1A]">
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+        <span id="playback-scenario-badge" class="px-2.5 py-0.5 bg-[#F4F1EA] text-[#1A1A1A] font-mono font-bold border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] text-xs hidden sm:inline-block truncate max-w-[200px]">Host Gift Card ($45)</span>
+        <span id="playback-gotcha-badge" class="px-2.5 py-0.5 bg-[#E03C31] text-white font-mono font-bold border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] text-[10px]">⚠️ PROXIMITY ILLUSION</span>
+      </div>
+
+      <!-- Playback Controls -->
+      <div id="simulation-playback-controls" class="flex items-center gap-1.5 bg-[#F4F1EA] p-1 border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A]">
+        <button id="playback-btn-prev" class="px-2 py-1 bg-[#FFFFFF] hover:bg-[#F7C114] text-[#1A1A1A] border-2 border-[#1A1A1A] shadow-[1px_1px_0px_#1A1A1A] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="Previous Step (Left Arrow)">
+          <i data-lucide="skip-back" class="w-3.5 h-3.5"></i>
+        </button>
+        <button id="playback-btn-play" class="px-3 py-1 bg-[#144B9E] hover:bg-[#0D3470] text-white font-heading font-bold text-xs uppercase tracking-wider border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] active:translate-x-[1px] active:translate-y-[1px] flex items-center gap-1 transition-all" title="Play/Pause (Space)">
+          <i data-lucide="play" class="w-3 h-3 text-white"></i>
+          <span id="playback-play-text">Play</span>
+        </button>
+        <button id="playback-btn-next" class="px-2 py-1 bg-[#FFFFFF] hover:bg-[#F7C114] text-[#1A1A1A] border-2 border-[#1A1A1A] shadow-[1px_1px_0px_#1A1A1A] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="Next Step (Right Arrow)">
+          <i data-lucide="skip-forward" class="w-3.5 h-3.5"></i>
+        </button>
+        <button id="playback-btn-reset" class="px-2 py-1 bg-[#FFFFFF] hover:bg-[#E03C31] hover:text-white text-[#1A1A1A] border-2 border-[#1A1A1A] shadow-[1px_1px_0px_#1A1A1A] active:translate-x-[1px] active:translate-y-[1px] transition-all" title="Reset Simulation">
+          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+        </button>
+        <div class="h-4 w-0.5 bg-[#1A1A1A] mx-1"></div>
+        <span class="text-[#1A1A1A] font-mono font-bold text-[11px] px-1" id="playback-step-counter">Step 1 of 5</span>
+      </div>
+
+      <!-- Speed Toggle -->
+      <div id="simulation-speed-controls" class="flex items-center gap-1.5 text-xs text-[#1A1A1A] font-heading font-bold uppercase">
+        <span>Speed:</span>
+        <div class="inline-flex border-2 border-[#1A1A1A] bg-[#FFFFFF] shadow-[2px_2px_0px_#1A1A1A]">
+          <button data-speed="2500" class="speed-toggle px-2 py-0.5 text-xs font-mono font-bold text-[#4A4A4A] hover:bg-[#F7C114]/30 border-r border-[#1A1A1A]">0.5x</button>
+          <button data-speed="1500" class="speed-toggle px-2 py-0.5 text-xs font-mono font-bold text-[#1A1A1A] bg-[#F7C114] border-r border-[#1A1A1A]">1x</button>
+          <button data-speed="800" class="speed-toggle px-2 py-0.5 text-xs font-mono font-bold text-[#4A4A4A] hover:bg-[#F7C114]/30">2x</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Main Content Body -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 z-10 space-y-8">
+
+    <!-- ========================================================================= -->
+    <!-- MODULE 1: Paradigm Matrix & Hero Overview                                 -->
+    <!-- ========================================================================= -->
+    <section id="module-paradigm-matrix" class="module-section block space-y-8 animate-fadeIn">
+      
+      <!-- Hero Header Banner -->
+      <div class="bauhaus-card p-6 sm:p-8 bg-[#FFFFFF] relative overflow-hidden">
+        <!-- Top Colored Accent Stripe -->
+        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#E03C31] via-[#F7C114] to-[#144B9E]"></div>
+        
+        <div class="relative z-10 max-w-4xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#144B9E] text-white border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] text-xs font-heading font-extrabold uppercase tracking-widest mb-4">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            Architectural Deep Dive
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-heading font-black tracking-tight text-[#1A1A1A] leading-tight uppercase">
+            Vector Embedding Proximity <span class="bg-[#F7C114] px-2 py-0.5 border-2 border-[#1A1A1A] shadow-[3px_3px_0px_#1A1A1A] inline-block mx-1">vs.</span> Ontological Knowledge Graphs
+          </h1>
+          <p class="mt-4 text-sm sm:text-base text-[#4A4A4A] leading-relaxed font-medium">
+            Why statistical semantic search fails on deterministic enterprise compliance, and how combining <strong class="text-[#144B9E] underline decoration-2">RAG perception</strong> with <strong class="text-[#15803D] underline decoration-2">OKF symbolic reasoning</strong> delivers auditable, zero-hallucination policy execution.
+          </p>
+        </div>
+      </div>
+
+      <!-- Split Hero Canvas (Interactive Dual-Track Motion Explainer) -->
+      <div id="hero-split-canvas-container" class="bauhaus-card p-6 bg-[#FFFFFF] space-y-6">
+        
+        <!-- Controls & Interactive Chips Bar -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b-2 border-[#1A1A1A] pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 bg-[#144B9E] text-white font-mono font-bold text-xs border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A]">DUAL MICRO-SIMULATION</span>
+              <h2 class="text-lg font-heading font-black text-[#1A1A1A] uppercase tracking-wide">Continuous Vector Space vs. Discrete Symbolic AST</h2>
+            </div>
+            <p class="text-xs text-[#4A4A4A] font-medium mt-1">Click the interactive badge chips to trigger animated ripple waves, prohibition warnings, and Git provenance gates.</p>
+          </div>
+
+          <!-- Interactive Badge Chips & Trigger Controls -->
+          <div class="flex items-center gap-2 flex-wrap">
+            <button id="hero-chip-cos" class="bauhaus-btn px-3 py-1.5 text-xs font-mono font-bold bg-[#144B9E] hover:bg-[#0D3470] text-white border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] flex items-center gap-1.5 transition-all" title="Trigger Vector Cosine Ripple Expansion">
+              <i data-lucide="waves" class="w-3.5 h-3.5"></i>
+              <span>[Cos Similarity: High]</span>
+            </button>
+            <button id="hero-chip-prohibition" class="bauhaus-btn px-3 py-1.5 text-xs font-mono font-bold bg-[#E03C31] hover:bg-[#B8281F] text-white border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] flex items-center gap-1.5 transition-all" title="Highlight Excluded Exception Chunk Outside Cutoff">
+              <i data-lucide="alert-octagon" class="w-3.5 h-3.5"></i>
+              <span>[Prohibition Blind: Yes]</span>
+            </button>
+            <button id="hero-chip-git" class="bauhaus-btn px-3 py-1.5 text-xs font-mono font-bold bg-[#F7C114] hover:bg-[#E5B00D] text-[#1A1A1A] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] flex items-center gap-1.5 transition-all" title="Highlight Deterministic Git Commit Provenance">
+              <i data-lucide="git-commit" class="w-3.5 h-3.5"></i>
+              <span>[Git Provenance: No]</span>
+            </button>
+            <button id="hero-btn-play" class="bauhaus-btn px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider bg-[#15803D] hover:bg-[#116630] text-white border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] flex items-center gap-1.5 transition-all" title="Replay Dual Split Simulation">
+              <i data-lucide="play" class="w-3.5 h-3.5"></i>
+              <span>Animate</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Split Canvas Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+          
+          <!-- Track A: Pure RAG Vector Space Canvas -->
+          <div class="bauhaus-card-sm p-4 bg-[#FFFFFF] flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between border-b-2 border-[#1A1A1A] pb-2 mb-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 bg-[#144B9E] text-white border border-[#1A1A1A] flex items-center justify-center font-bold text-xs">A</div>
+                  <div>
+                    <h3 class="font-heading font-bold text-[#1A1A1A] text-sm uppercase">Track A: Pure RAG (Vector Space)</h3>
+                    <p class="text-[10px] font-mono text-[#144B9E] font-bold">ANN Cosine Similarity &amp; Cutoff Radii</p>
+                  </div>
+                </div>
+                <span class="bauhaus-badge bauhaus-badge-blue">Continuous 2D Projection</span>
+              </div>
+
+              <!-- Canvas Container -->
+              <div class="relative bg-[#F4F1EA] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] overflow-hidden">
+                <canvas id="hero-rag-canvas" width="560" height="320" class="w-full h-72 block bg-[#F4F1EA]"></canvas>
+                <div id="hero-rag-alert-overlay" class="absolute top-2 right-2 hidden bg-[#E03C31] text-white font-mono text-[10px] font-bold px-2 py-1 border border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] animate-pulse">
+                  ❌ MISSED BY COSINE DISTANCE (Sec 5.2)
+                </div>
+              </div>
+            </div>
+
+            <!-- Telemetry & Verdict -->
+            <div class="p-3 bg-[#F4F1EA] border-2 border-[#1A1A1A] font-mono text-xs text-[#1A1A1A] space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-[#144B9E] font-bold">Query: "Expense $45 host gift card"</span>
+                <span class="text-[10px] px-1.5 py-0.5 bg-[#FFFFFF] border border-[#1A1A1A] font-bold">Top-1 S=0.91</span>
+              </div>
+              <div class="text-[#4A4A4A] text-[11px]">Matched: "Sec 4.3: Host gifts up to $50 allowed"</div>
+              <div class="text-[#E03C31] text-[11px] font-bold">Excluded: "Sec 5.2: Commercial gift cards prohibited" (S=0.42 &lt; 0.70 cutoff)</div>
+              <div class="mt-2 pt-1.5 border-t border-[#1A1A1A] font-bold text-[#E03C31] flex items-center justify-between">
+                <span>Verdict: ⚠️ FALSE APPROVAL</span>
+                <span class="text-[10px] uppercase tracking-wider bg-[#E03C31] text-white px-2 py-0.5 border border-[#1A1A1A]">Compliance Breach</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Track B: Pure OKF Orthogonal Tree -->
+          <div class="bauhaus-card-sm p-4 bg-[#FFFFFF] flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between border-b-2 border-[#1A1A1A] pb-2 mb-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 bg-[#15803D] text-white border border-[#1A1A1A] flex items-center justify-center font-bold text-xs">B</div>
+                  <div>
+                    <h3 class="font-heading font-bold text-[#1A1A1A] text-sm uppercase">Track B: Pure OKF (Symbolic AST)</h3>
+                    <p class="text-[10px] font-mono text-[#15803D] font-bold">Hierarchical Traversal &amp; Invariant Gate</p>
+                  </div>
+                </div>
+                <span class="bauhaus-badge bauhaus-badge-green">Discrete Tree Traversal</span>
+              </div>
+
+              <!-- Orthogonal Hierarchy Tree Container -->
+              <div id="hero-okf-tree-container" class="relative bg-[#F4F1EA] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] h-72 p-3 overflow-hidden flex flex-col justify-between font-mono text-xs">
+                <!-- SVG Connections Overlay -->
+                <svg id="hero-okf-svg" class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Rendered dynamically -->
+                </svg>
+
+                <!-- Root Node -->
+                <div class="z-10 bg-[#FFFFFF] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] px-3 py-1.5 text-center font-bold text-[#1A1A1A] flex items-center justify-center gap-2">
+                  <span class="w-2 h-2 bg-[#15803D]"></span>
+                  <span>Cymbal HR Policy Handbook</span>
+                </div>
+
+                <!-- Mid Branches -->
+                <div class="z-10 grid grid-cols-2 gap-3 my-auto">
+                  <div id="hero-okf-branch-43" class="bg-[#FFFFFF] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] p-2 text-[11px] transition-all">
+                    <div class="font-bold text-[#144B9E] flex items-center justify-between">
+                      <span>Sec 4.3 Travel &amp; Expense</span>
+                      <span class="text-[#15803D]">✓</span>
+                    </div>
+                    <div class="text-[#4A4A4A] mt-1">$45 &lt; $50 Cap check</div>
+                  </div>
+
+                  <div id="hero-okf-branch-52" class="bg-[#FFFFFF] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] p-2 text-[11px] transition-all">
+                    <div class="font-bold text-[#E03C31] flex items-center justify-between">
+                      <span>Sec 5.2 Ethics &amp; Conduct</span>
+                      <span class="text-[#E03C31]">⚠️</span>
+                    </div>
+                    <div class="text-[#4A4A4A] mt-1">is_gift_card == true</div>
+                  </div>
+                </div>
+
+                <!-- Invariant Gate Barrier Stamp -->
+                <div id="hero-okf-barrier-stamp" class="z-10 bg-[#FFFFFF] border-3 border-[#1A1A1A] shadow-[3px_3px_0px_#1A1A1A] p-2.5 flex items-center justify-between transition-all">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-[#E03C31] flex-shrink-0"></span>
+                    <span class="font-bold text-[#1A1A1A] text-xs">INVARIANT GATE: [GIFT_CARD == PROHIBITED]</span>
+                  </div>
+                  <span id="hero-okf-stamp-badge" class="px-2 py-0.5 bg-[#E03C31] text-white font-black text-xs border border-[#1A1A1A] shadow-[1px_1px_0px_#1A1A1A] tracking-wider animate-pulse">
+                    🛑 BLOCKED
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Telemetry & Verdict -->
+            <div class="p-3 bg-[#F4F1EA] border-2 border-[#1A1A1A] font-mono text-xs text-[#1A1A1A] space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-[#15803D] font-bold">Traversal: read_concept("4.3") + read_concept("5.2")</span>
+                <span class="text-[10px] px-1.5 py-0.5 bg-[#FFFFFF] border border-[#1A1A1A] font-bold">SHA-256 c8a91f4</span>
+              </div>
+              <div class="text-[#4A4A4A] text-[11px]">Git Provenance: knowledge/05-ethics.../5.2-commercial-gifts.md:42</div>
+              <div class="text-[#15803D] text-[11px] font-bold">Gate Evaluator: Strict symbolic invariance overrides proximity match</div>
+              <div class="mt-2 pt-1.5 border-t border-[#1A1A1A] font-bold text-[#15803D] flex items-center justify-between">
+                <span>Verdict: 🚫 PROHIBITED</span>
+                <span class="text-[10px] uppercase tracking-wider bg-[#15803D] text-white px-2 py-0.5 border border-[#1A1A1A]">100% Deterministic</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Interactive 8-Axis Comparison Matrix Table -->
+      <div class="bauhaus-card p-6 bg-[#FFFFFF]">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b-2 border-[#1A1A1A] pb-4">
+          <div>
+            <h3 class="text-lg font-heading font-black text-[#1A1A1A] uppercase tracking-wide">8-Axis Architectural Dimension Matrix</h3>
+            <p class="text-xs text-[#4A4A4A] font-medium">Compare behavioral differences across 8 critical enterprise evaluation axes.</p>
+          </div>
+
+          <!-- Dimension Filter Buttons -->
+          <div class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0" id="matrix-dimension-filters">
+            <button data-dim="all" class="matrix-filter-btn active px-2.5 py-1 text-xs font-mono font-bold uppercase bg-[#F7C114] text-[#1A1A1A] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A]">All</button>
+            <button data-dim="precision" class="matrix-filter-btn px-2.5 py-1 text-xs font-mono font-bold uppercase bg-[#FFFFFF] text-[#1A1A1A] border-2 border-[#1A1A1A] hover:bg-[#F4F1EA]">Precision</button>
+            <button data-dim="negations" class="matrix-filter-btn px-2.5 py-1 text-xs font-mono font-bold uppercase bg-[#FFFFFF] text-[#1A1A1A] border-2 border-[#1A1A1A] hover:bg-[#F4F1EA]">Negations</button>
+            <button data-dim="multihop" class="matrix-filter-btn px-2.5 py-1 text-xs font-mono font-bold uppercase bg-[#FFFFFF] text-[#1A1A1A] border-2 border-[#1A1A1A] hover:bg-[#F4F1EA]">Hierarchies</button>
+            <button data-dim="math" class="matrix-filter-btn px-2.5 py-1 text-xs font-mono font-bold uppercase bg-[#FFFFFF] text-[#1A1A1A] border-2 border-[#1A1A1A] hover:bg-[#F4F1EA]">Arithmetic</button>
+            <button data-dim="coldstart" class="matrix-filter-btn px-2.5 py-1 text-xs font-mono font-bold uppercase bg-[#FFFFFF] text-[#1A1A1A] border-2 border-[#1A1A1A] hover:bg-[#F4F1EA]">Cold-Start</button>
+            <button data-dim="audit" class="matrix-filter-btn px-2.5 py-1 text-xs font-mono font-bold uppercase bg-[#FFFFFF] text-[#1A1A1A] border-2 border-[#1A1A1A] hover:bg-[#F4F1EA]">Auditability</button>
+            <button data-dim="jurisdiction" class="matrix-filter-btn px-2.5 py-1 text-xs font-mono font-bold uppercase bg-[#FFFFFF] text-[#1A1A1A] border-2 border-[#1A1A1A] hover:bg-[#F4F1EA]">Adaptability</button>
+            <button data-dim="speed" class="matrix-filter-btn px-2.5 py-1 text-xs font-mono font-bold uppercase bg-[#FFFFFF] text-[#1A1A1A] border-2 border-[#1A1A1A] hover:bg-[#F4F1EA]">Speed</button>
+          </div>
+        </div>
+
+        <!-- Matrix Table -->
+        <div class="overflow-x-auto">
+          <table class="bauhaus-table" id="matrix-table">
+            <thead>
+              <tr>
+                <th class="py-3 px-4">Evaluation Dimension</th>
+                <th class="py-3 px-4 bg-[#144B9E] text-white font-heading uppercase">Track A: Pure RAG</th>
+                <th class="py-3 px-4 bg-[#15803D] text-white font-heading uppercase">Track B: Pure OKF</th>
+                <th class="py-3 px-4 bg-[#6B21A8] text-white font-heading uppercase">Track C: Neuro-Symbolic Hybrid</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-table-body">
+              <!-- Dynamically populated / rendered by app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- MODULE 2: OKF & ADK Tool Visualizer (Policy Node Dissector)               -->
+    <!-- ========================================================================= -->
+    <section id="module-under-the-hood" class="module-section hidden space-y-6 animate-fadeIn">
+      <div id="okf-under-hood-mount" class="space-y-6">
+        <!-- Rendered dynamically by OkfUnderHood in web/js/okf_under_hood.js -->
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- MODULE 3: Dual-Track Live Arena Placeholder (M3 Mount Point)              -->
+    <!-- ========================================================================= -->
+    <section id="module-dual-track-arena" class="module-section hidden space-y-6 animate-fadeIn">
+      <div id="dual-track-arena-mount" class="space-y-6">
+        <div id="dual-track-arena-container" class="space-y-6">
+
+          <!-- Arena Header: Active Scenario Bar -->
+          <div class="bauhaus-card p-5 bg-[#FFFFFF] flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-[#6B21A8] text-white border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="help-circle" class="w-5 h-5 text-white"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-heading font-extrabold uppercase tracking-wider text-[#4A4A4A]">Active Test Scenario</span>
+                  <span id="arena-scenario-category" class="px-2 py-0.5 text-[10px] font-mono font-bold bg-[#F7C114] text-[#1A1A1A] border-2 border-[#1A1A1A] shadow-[1px_1px_0px_#1A1A1A]">Travel &amp; Expense</span>
+                </div>
+                <p id="arena-query-text" class="text-sm sm:text-base font-bold text-[#1A1A1A] mt-1 leading-relaxed">
+                  "I'm staying at my cousin's house on a work trip instead of a hotel. As a thank-you I want to buy him a $45 gift card and expense it. Is that allowed?"
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 self-end md:self-center flex-shrink-0">
+              <span class="text-xs font-heading font-bold uppercase text-[#4A4A4A]">Phase:</span>
+              <span id="arena-step-badge" class="px-3 py-1 bg-[#144B9E] text-white border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] text-xs font-mono font-bold">1 / 5 (Query Ingest)</span>
+            </div>
+          </div>
+
+          <!-- Side-by-Side Dual-Track Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <!-- LEFT TRACK: Pure RAG (Vector Space Canvas) -->
+            <div class="bauhaus-card p-5 bg-[#FFFFFF] flex flex-col space-y-4">
+              <!-- Track Header -->
+              <div class="flex items-center justify-between border-b-2 border-[#1A1A1A] pb-3">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 bg-[#144B9E] text-white border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] flex items-center justify-center">
+                    <i data-lucide="scatter-chart" class="w-4 h-4 text-white"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-heading font-black text-[#1A1A1A] text-sm uppercase">Track A: Pure RAG</h4>
+                    <p class="text-[10px] text-[#144B9E] font-mono font-bold">Statistical Cosine Similarity &amp; ANN</p>
+                  </div>
+                </div>
+                <span id="rag-status-badge" class="bauhaus-badge bauhaus-badge-blue">
+                  Step 1: Embedding
+                </span>
+              </div>
+
+              <!-- Canvas Vector Space Container -->
+              <div id="rag-canvas-container" class="relative w-full h-[320px] bg-[#FFFFFF] border-3 border-[#1A1A1A] shadow-[4px_4px_0px_#1A1A1A] flex items-center justify-center overflow-hidden">
+                <canvas id="rag-vector-canvas" class="w-full h-full block"></canvas>
+                <!-- Overlay HUD Tags -->
+                <div class="absolute top-2 left-2 pointer-events-none flex items-center gap-1.5 text-[10px] font-mono font-bold text-[#1A1A1A] bg-[#FFFFFF] px-2 py-1 border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A]">
+                  <span class="w-2 h-2 bg-[#144B9E]"></span>
+                  <span>Vector Plane: 2D Projected Space</span>
+                </div>
+                <div class="absolute top-2 right-2 pointer-events-none text-[10px] font-mono font-bold text-[#1A1A1A] bg-[#FFFFFF] px-2 py-1 border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A]" id="rag-topk-hud">
+                  Top-K: 2 Chunks
+                </div>
+              </div>
+
+              <!-- RAG Step Inspector & Context Injection Box -->
+              <div id="rag-step-inspector" class="flex-1 space-y-3 text-xs">
+                <!-- Dynamically rendered by rag_engine.js -->
+              </div>
+
+              <!-- RAG Final Verdict Card -->
+              <div id="rag-verdict-container" class="p-3.5 bg-[#F4F1EA] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] space-y-2">
+                <!-- Dynamically rendered by rag_engine.js -->
+              </div>
+            </div>
+
+            <!-- RIGHT TRACK: Pure OKF (Symbolic Concept Graph SVG) -->
+            <div class="bauhaus-card p-5 bg-[#FFFFFF] flex flex-col space-y-4">
+              <!-- Track Header -->
+              <div class="flex items-center justify-between border-b-2 border-[#1A1A1A] pb-3">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 bg-[#15803D] text-white border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] flex items-center justify-center">
+                    <i data-lucide="git-fork" class="w-4 h-4 text-white"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-heading font-black text-[#1A1A1A] text-sm uppercase">Track B: Pure OKF</h4>
+                    <p class="text-[10px] text-[#15803D] font-mono font-bold">Deterministic Symbolic Graph &amp; Invariant Gates</p>
+                  </div>
+                </div>
+                <span id="okf-status-badge" class="bauhaus-badge bauhaus-badge-green">
+                  Step 1: Parse
+                </span>
+              </div>
+
+              <!-- SVG Concept Graph Container -->
+              <div id="okf-svg-container" class="relative w-full h-[320px] bg-[#FFFFFF] border-3 border-[#1A1A1A] shadow-[4px_4px_0px_#1A1A1A] flex items-center justify-center overflow-hidden">
+                <svg id="okf-concept-svg" viewBox="0 0 800 360" class="w-full h-full block">
+                  <!-- Dynamically rendered by okf_engine.js -->
+                </svg>
+                <!-- Overlay HUD Tags -->
+                <div class="absolute top-2 left-2 pointer-events-none flex items-center gap-1.5 text-[10px] font-mono font-bold text-[#1A1A1A] bg-[#FFFFFF] px-2 py-1 border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A]">
+                  <span class="w-2 h-2 bg-[#15803D]"></span>
+                  <span>Ontology DAG: 152 Concept Nodes</span>
+                </div>
+                <div class="absolute top-2 right-2 pointer-events-none text-[10px] font-mono font-bold text-[#1A1A1A] bg-[#FFFFFF] px-2 py-1 border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A]" id="okf-active-nodes-hud">
+                  Active Nodes: 2
+                </div>
+              </div>
+
+              <!-- OKF Invariant Gates & Tool Execution Log -->
+              <div id="okf-step-inspector" class="flex-1 space-y-3 text-xs">
+                <!-- Dynamically rendered by okf_engine.js -->
+              </div>
+
+              <!-- OKF Final Verdict Card -->
+              <div id="okf-verdict-container" class="p-3.5 bg-[#F4F1EA] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] space-y-2">
+                <!-- Dynamically rendered by okf_engine.js -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Comparative Outcome & Risk Assessment Card -->
+          <div class="bauhaus-card p-5 bg-[#FFFFFF] space-y-3" id="arena-comparative-card">
+            <!-- Dynamically rendered comparative summary table -->
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- MODULE 4: Gotcha & Failure Mode Lab Placeholder (M3 Mount Point)          -->
+    <!-- ========================================================================= -->
+    <section id="module-gotcha-lab" class="module-section hidden space-y-6 animate-fadeIn">
+      <div id="gotcha-lab-mount" class="space-y-6">
+        <div class="bauhaus-card p-8 bg-[#FFFFFF] text-center border-4 border-[#1A1A1A]">
+          <div class="w-16 h-16 bg-[#E03C31] text-white border-2 border-[#1A1A1A] shadow-[4px_4px_0px_#1A1A1A] flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="alert-triangle" class="w-8 h-8 text-white"></i>
+          </div>
+          <h3 class="text-2xl font-heading font-black text-[#1A1A1A] uppercase mb-2">Gotcha &amp; Failure Mode Dramatization Lab</h3>
+          <p class="text-xs sm:text-sm text-[#4A4A4A] max-w-2xl mx-auto mb-6 leading-relaxed font-medium">
+            Interactive deep dives into the 4 fundamental RAG failure modes (Proximity Illusion, Context Boundary Fragmentation, Negation Blindness, Arithmetic Hallucination) and 2 OKF limitations.
+          </p>
+          <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-white bg-[#E03C31] px-4 py-2 border-2 border-[#1A1A1A] shadow-[3px_3px_0px_#1A1A1A]">
+            <span>Mount Point: web/js/gotchas.js (Milestone 3)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- MODULE 5: Neuro-Symbolic Hybrid Architecture Placeholder (M4 Mount Point) -->
+    <!-- ========================================================================= -->
+    <section id="module-hybrid-pipeline" class="module-section hidden space-y-6 animate-fadeIn">
+      <div id="hybrid-pipeline-mount" class="space-y-6">
+        <div class="bauhaus-card p-8 bg-[#FFFFFF] text-center border-4 border-[#1A1A1A]">
+          <div class="w-16 h-16 bg-[#144B9E] text-white border-2 border-[#1A1A1A] shadow-[4px_4px_0px_#1A1A1A] flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="git-merge" class="w-8 h-8 text-white"></i>
+          </div>
+          <h3 class="text-2xl font-heading font-black text-[#1A1A1A] uppercase mb-2">Neuro-Symbolic Hybrid Pipeline Conveyor</h3>
+          <p class="text-xs sm:text-sm text-[#4A4A4A] max-w-2xl mx-auto mb-6 leading-relaxed font-medium">
+            Interactive 5-stage factory conveyor: User Query &rarr; Entity Snapping &rarr; Bifurcation &rarr; Invariant Gate &rarr; Grounded Synthesis with Git Hash Stamping.
+          </p>
+          <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-white bg-[#144B9E] px-4 py-2 border-2 border-[#1A1A1A] shadow-[3px_3px_0px_#1A1A1A]">
+            <span>Mount Point: web/js/hybrid_engine.js (Milestone 4)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- MODULE 6: Policy Stress-Tester Placeholder (M4 Mount Point)               -->
+    <!-- ========================================================================= -->
+    <section id="module-stress-tester" class="module-section hidden space-y-6 animate-fadeIn">
+      <div id="stress-tester-mount" class="space-y-6">
+        <div class="bauhaus-card p-8 bg-[#FFFFFF] text-center border-4 border-[#1A1A1A]">
+          <div class="w-16 h-16 bg-[#D97706] text-white border-2 border-[#1A1A1A] shadow-[4px_4px_0px_#1A1A1A] flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="sliders" class="w-8 h-8 text-white"></i>
+          </div>
+          <h3 class="text-2xl font-heading font-black text-[#1A1A1A] uppercase mb-2">Policy Multi-Slider Stress-Tester</h3>
+          <p class="text-xs sm:text-sm text-[#4A4A4A] max-w-2xl mx-auto mb-6 leading-relaxed font-medium">
+            Real-time parametric sandbox with Expense Age (1-120d), Amount ($10-$2000), Category, Seniority Hierarchy, and Tenure/Shift sliders dynamically evaluating approval tiers.
+          </p>
+          <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#1A1A1A] bg-[#F7C114] px-4 py-2 border-2 border-[#1A1A1A] shadow-[3px_3px_0px_#1A1A1A]">
+            <span>Mount Point: web/js/stress_tester.js (Milestone 4)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- MODULE 7: Eval Scorecard & Provenance Placeholder (M4 Mount Point)        -->
+    <!-- ========================================================================= -->
+    <section id="module-eval-scorecard" class="module-section hidden space-y-6 animate-fadeIn">
+      <div id="eval-scorecard-mount" class="space-y-6">
+        <div class="bauhaus-card p-8 bg-[#FFFFFF] text-center border-4 border-[#1A1A1A]">
+          <div class="w-16 h-16 bg-[#15803D] text-white border-2 border-[#1A1A1A] shadow-[4px_4px_0px_#1A1A1A] flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="award" class="w-8 h-8 text-white"></i>
+          </div>
+          <h3 class="text-2xl font-heading font-black text-[#1A1A1A] uppercase mb-2">Golden Eval Scorecard &amp; Git Provenance</h3>
+          <p class="text-xs sm:text-sm text-[#4A4A4A] max-w-2xl mx-auto mb-6 leading-relaxed font-medium">
+            Auditable 5-dimension evaluation rubric scorecard (Correctness, Grounding, Reasoning, Abstention, Citation) with anti-gaming gates, live benchmark race track, and morphing radar polygon.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full border-t-4 border-[#1A1A1A] py-6 bg-[#FFFFFF] text-[#4A4A4A] text-xs mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2 font-mono">
+        <span class="font-bold text-[#1A1A1A]">RAG vs. OKF</span>
+        <span>•</span>
+        <span>Neuro-Symbolic Policy Engine Explainer</span>
+      </div>
+      <div class="flex items-center gap-3 text-[11px] font-mono">
+        <span>Hypothetical Enterprise HR Benchmark</span>
+        <span>•</span>
+        <span>Created by <a href="https://github.com/amuhra" target="_blank" rel="noopener noreferrer" class="font-bold text-[#144B9E] hover:underline inline-flex items-center gap-1"><i data-lucide="github" class="w-3.5 h-3.5"></i> @amuhra</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-20 right-6 z-50 flex flex-col gap-2 max-w-sm pointer-events-none">
+    <!-- Populated dynamically by app.js showToast() -->
+  </div>
+
+  <!-- Floating Persistent Auto-Advance Timer HUD (Only visible and clickable when auto-play timer is ACTIVE on Live Arena / Hybrid) -->
+  <div id="floating-playback-hud" class="fixed bottom-6 right-6 z-50 hidden transition-all duration-300 transform translate-y-0 pointer-events-auto">
+    <div class="bauhaus-card p-3.5 bg-[#FFFFFF] border-3 border-[#1A1A1A] shadow-[6px_6px_0px_#1A1A1A] flex items-center gap-3 font-mono text-xs">
+      <!-- Active Step Radar Beacon -->
+      <div class="relative flex items-center justify-center w-8 h-8 bg-[#144B9E] text-white border-2 border-[#1A1A1A] font-bold text-xs flex-shrink-0">
+        <span id="hud-step-num">1</span>
+        <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full bg-[#E03C31] opacity-75"></span>
+          <span class="relative inline-flex h-2.5 w-2.5 bg-[#E03C31]"></span>
+        </span>
+      </div>
+
+      <!-- Countdown & Progress Bar -->
+      <div class="space-y-1 min-w-[170px]">
+        <div class="flex items-center justify-between gap-2 text-[11px] font-bold text-[#1A1A1A]">
+          <span id="hud-step-title" class="truncate max-w-[110px]">Step 1 of 5</span>
+          <span id="hud-countdown-text" class="px-1.5 py-0.2 bg-[#F7C114] text-[#1A1A1A] border border-[#1A1A1A] font-mono text-[10px] whitespace-nowrap">30s</span>
+        </div>
+        <div class="w-full bg-[#F4F1EA] h-1.5 border border-[#1A1A1A] overflow-hidden">
+          <div id="hud-progress-bar" class="bg-[#144B9E] h-full transition-all duration-1000 ease-linear" style="width: 100%"></div>
+        </div>
+      </div>
+
+      <!-- Floating Pause Button -->
+      <button id="hud-btn-pause" class="px-3 py-1.5 bg-[#E03C31] hover:bg-[#B8281F] text-white font-heading font-black uppercase text-xs border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] active:translate-x-[1px] active:translate-y-[1px] flex items-center gap-1.5 cursor-pointer transition-all flex-shrink-0" title="Pause Auto-Play (Space)">
+        <i data-lucide="pause" class="w-3.5 h-3.5 text-white"></i>
+        <span>Pause</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Floating Side Dock Button for Handbook Corpus & Git Provenance (Zero header overlap) -->
+  <button id="btn-quick-inspect" class="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-[#144B9E] hover:bg-[#0D3470] text-white font-heading font-extrabold uppercase text-[11px] tracking-wider px-2 py-3.5 border-y-2 border-l-2 border-[#1A1A1A] shadow-[-3px_3px_0px_#1A1A1A] active:translate-x-0.5 flex flex-col items-center gap-1.5 cursor-pointer transition-all group" title="Open Cymbal HR Handbook Corpus & Git Provenance">
+    <i data-lucide="book-open" class="w-4 h-4 text-white group-hover:scale-110 transition-transform"></i>
+    <span class="[writing-mode:vertical-rl] rotate-180 font-mono tracking-widest text-[9px]">HANDBOOK</span>
+  </button>
+
+  <!-- Reusable Global Modal Dialog Overlay -->
+  <div id="global-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 hidden opacity-0 transition-opacity duration-200">
+    <div class="bauhaus-card w-full max-w-3xl max-h-[85vh] bg-[#FFFFFF] border-4 border-[#1A1A1A] shadow-[12px_12px_0px_#1A1A1A] flex flex-col overflow-hidden transform scale-95 transition-transform duration-200" id="global-modal-card">
+      <div class="flex items-center justify-between px-6 py-4 bg-[#144B9E] text-white border-b-3 border-[#1A1A1A]">
+        <h3 id="modal-title" class="font-heading font-black text-white text-base flex items-center gap-2 uppercase tracking-wide">
+          <!-- Modal Title -->
+        </h3>
+        <button id="modal-close-btn" class="p-1 bg-[#FFFFFF] text-[#1A1A1A] hover:bg-[#E03C31] hover:text-white border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] transition-all">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div id="modal-content" class="p-6 overflow-y-auto space-y-4 text-xs text-[#1A1A1A] flex-1 bg-[#FFFFFF]">
+        <!-- Modal Body Content -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Main ES Module Bootstrap -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
