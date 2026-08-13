@@ -2,8 +2,6 @@
 
 An interactive architectural deep-dive comparing **Retrieval-Augmented Generation (RAG)** and **Ontology Knowledge Files (OKF)** for enterprise policy evaluation in the Agent Development Kit (ADK).
 
-Live Demo: [https://amuhra.github.io/rag-vs-okf/](https://amuhra.github.io/rag-vs-okf/) *(or deploy to your own GitHub Pages)*
-
 ---
 
 ## 🎯 Overview
@@ -44,17 +42,6 @@ Open `http://localhost:8080` in your web browser.
 npx serve .
 ```
 
----
-
-## 📦 GitHub Pages Deployment
-
-This repository is ready for instant deployment to GitHub Pages:
-
-1. Push this repository to GitHub under your account (e.g. `https://github.com/amuhra/rag-vs-okf`).
-2. Go to **Settings** ➔ **Pages**.
-3. Under **Build and deployment** ➔ **Source**, select **Deploy from a branch**.
-4. Select `main` (or `master`) branch and `/ (root)` folder.
-5. Click **Save**. Your site will be live at `https://<username>.github.io/rag-vs-okf/`!
 
 ---
 
@@ -64,9 +51,3 @@ This repository is ready for instant deployment to GitHub Pages:
 - **Styling**: Tailwind CSS CDN with custom geometric, high-contrast visual tokens.
 - **Iconography**: Lucide Icons.
 - **Zero Build Step**: No bundler, compiler, or npm install required.
-
----
-
-## 👤 Author
-
-Crafted by **[@amuhra](https://github.com/amuhra)**
