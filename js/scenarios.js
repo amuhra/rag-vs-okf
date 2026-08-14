@@ -766,7 +766,7 @@ export const SCENARIOS = [
       activeNodes: [],
       traversalPath: ["Root", "Domain_Check (0 Concepts Matched)"],
       invariants: [
-        { name: "HR_DOMAIN_CLASSIFIER", condition: "query_domain == HR_POLICY", formula: "'PYTHON_CODE' == 'HR_POLICY'", status: "BLOCKED", isOverride: true, explanation: "Query is classified as software engineering, outside HR handbook ontology." }
+        { name: "HR_DOMAIN_CLASSIFIER", condition: "query_domain == HR_POLICY", formula: "'PYTHON_CODE' == 'HR_POLICY'", status: "BLOCKED", isOverride: true, explanation: "Query is classified as software engineering, outside HR handbook knowledge bundle." }
       ],
       verdict: "REFUSAL (OUT OF DOMAIN)",
       citation: "N/A",

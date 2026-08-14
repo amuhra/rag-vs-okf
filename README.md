@@ -1,6 +1,6 @@
 # RAG vs. OKF: Interactive Policy Architecture Explainer
 
-An interactive architectural deep-dive comparing **Retrieval-Augmented Generation (RAG)** and **Ontology Knowledge Files (OKF)** for enterprise policy evaluation in the Agent Development Kit (ADK).
+An interactive architectural deep-dive comparing **Retrieval-Augmented Generation (RAG)** and **Open Knowledge Format (OKF)** for enterprise policy evaluation in the Agent Development Kit (ADK).
 
 ---
 

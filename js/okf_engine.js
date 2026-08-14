@@ -23,7 +23,7 @@ export class OkfEngine {
     this.packetAnimId = null;
     this.packetT = 0; // 0 to 1 along curve
 
-    // Static Ontology Graph Definitions (Orthogonal / Clean Architectural Tree)
+    // Static OKF Bundle Definitions (Markdown Directory Tree)
     this.rootNode = { id: "root", label: "Cymbal Policy Handbook", x: 400, y: 35 };
     
     this.chapters = [
@@ -200,7 +200,7 @@ export class OkfEngine {
           stroke-width="2.5" />
         <rect x="-105" y="-7" width="14" height="14" fill="${rootActive ? '#FFFFFF' : '#15803D'}" stroke="#1A1A1A" stroke-width="1.5" />
         <text x="-82" y="5" fill="${rootActive ? '#FFFFFF' : '#1A1A1A'}" font-size="11" font-weight="900" font-family="'Jost', 'Inter', sans-serif" letter-spacing="0.05em">
-          CYMBAL POLICY ONTOLOGY
+          CYMBAL policy knowledge bundle
         </text>
         <rect x="74" y="-9" width="32" height="18" fill="#F7C114" stroke="#1A1A1A" stroke-width="1.5" />
         <text x="90" y="4" text-anchor="middle" fill="#1A1A1A" font-size="9" font-family='"JetBrains Mono", monospace' font-weight="bold">
@@ -461,7 +461,7 @@ bundle: okf/v1.0.0
               Scanned knowledge hierarchy in <code>knowledge/</code>; matched ${candidateConcepts.length} candidate concept paths.
             </div>
             <div class="p-2 bg-[#F4F1EA] border border-[#1A1A1A] text-[11px] text-[#4A4A4A]">
-              Filtering ontology tree to active chapter and section boundaries for precise atomic tool calls.
+              Filtering Knowledge directory tree to active chapter and section boundaries for precise atomic tool calls.
             </div>
           </div>
         `;

@@ -366,13 +366,13 @@ export const GOTCHA_DETAILS = {
     track: "OKF",
     tag: "Authoring Friction",
     badgeColor: "yellow",
-    riskLevel: "MAINTENANCE LATENCY & STALE ONTOLOGY",
+    riskLevel: "MAINTENANCE LATENCY & STALE KNOWLEDGE BUNDLE",
     summary: "Structuring monolithic PDFs into 152 atomic OKF markdown files with compliant YAML requires upfront curation.",
     solution: "Semi-automated bootstrapping tools (tools_build_okf.py) parsing PDFs into draft OKF bundles.",
     rootCauseMath: {
       formula: "T_{\\text{curation}} = N \\cdot (t_{\\text{segment}} + t_{\\text{yaml}} + t_{\\text{invariants}}) \\approx 40 \\text{ hours}",
       explanation: "Manual conversion of a 52-page unstructured handbook into 152 atomic nodes requires extensive domain expert hours. Policy amendments risk latency gaps where queries return stale refusals.",
-      consequence: "High upfront authoring friction slows ontology updates when new HR policies are released."
+      consequence: "High upfront authoring friction slows knowledge updates when new HR policies are released."
     },
     presets: [
       {
@@ -979,7 +979,7 @@ export class GotchasLab {
           </div>
           <div class="p-2.5 bg-[#F4F1EA] border border-[#1A1A1A] text-[#1A1A1A]">
             <span class="text-[#717171] font-bold">Query Slang Tokens:</span> "${p.rawTerms.join('", "')}"<br>
-            <span class="text-[#717171] font-bold">Ontology Scan:</span> No markdown filename or title matches found.
+            <span class="text-[#717171] font-bold">OKF Directory Scan:</span> No markdown filename or title matches found.
           </div>
           <div class="flex items-center gap-2 text-[#E03C31] text-xs font-bold">
             <i data-lucide="alert-circle" class="w-4 h-4 flex-shrink-0"></i>

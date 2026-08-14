@@ -1289,7 +1289,7 @@ export const HYBRID_PIPELINE_DATA = {
       },
       semanticTokens: ["Python function", "reverses a string", "coding assistant request", "software development"],
       disambiguationRules: [
-        "DOMAIN_GATE: identifies query subject as general software engineering outside Cymbal HR Handbook ontology",
+        "DOMAIN_GATE: identifies query subject as general software engineering outside Cymbal HR handbook knowledge bundle",
         "ZERO_MATCH_FALLBACK: triggers polite refusal guardrail"
       ],
       candidateConcepts: [],
@@ -2032,7 +2032,7 @@ export class HybridEngine {
           <div class="p-4 bg-[#FFFFFF] border-3 border-[#1A1A1A] shadow-[4px_4px_0px_#1A1A1A] space-y-2">
             <div class="flex items-center justify-between border-b-2 border-[#1A1A1A] pb-2">
               <h5 class="text-xs font-heading font-black text-[#1A1A1A] uppercase tracking-wider flex items-center gap-1.5">
-                <i data-lucide="folder-tree" class="w-3.5 h-3.5 text-[#15803D]"></i> Candidate Ontology Paths
+                <i data-lucide="folder-tree" class="w-3.5 h-3.5 text-[#15803D]"></i> Candidate OKF Paths
               </h5>
               <span class="bauhaus-badge bauhaus-badge-green">${s2.ontologyCoverage}</span>
             </div>
@@ -2305,7 +2305,7 @@ export class HybridEngine {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
           <div class="p-4 bg-[#F4F1EA] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] space-y-1.5">
             <span class="font-black text-[#144B9E] block uppercase">1. Neural Perception (Stages 1-2)</span>
-            <p class="text-[#4A4A4A] font-sans text-xs leading-relaxed">Handles colloquial phrasing, extracts typed entity slots with snapping bounding boxes, and resolves ontology candidates with 98%+ confidence.</p>
+            <p class="text-[#4A4A4A] font-sans text-xs leading-relaxed">Handles colloquial phrasing, extracts typed entity slots with snapping bounding boxes, and resolves OKF candidates with 98%+ confidence.</p>
           </div>
           <div class="p-4 bg-[#F4F1EA] border-2 border-[#1A1A1A] shadow-[2px_2px_0px_#1A1A1A] space-y-1.5">
             <span class="font-black text-[#D97706] block uppercase">2. Dual Retrieval (Stage 3)</span>

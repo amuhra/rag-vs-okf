@@ -3626,7 +3626,7 @@ export const CONFORMANCE_RULES = [
     name: "Non-Empty `type` Declaration",
     severity: "HARD_FAIL",
     spec: "Every concept frontmatter must declare non-empty `type` (e.g. 'HR Policy')",
-    description: "Ensures ontological categorization is present on every node."
+    description: "Ensures Open Knowledge Formalization is present in every YAML frontmatter."
   },
   {
     id: "rule_6_link_resolution",
@@ -5686,7 +5686,7 @@ description: "${activeConcept.description.replace(/"/g, '\\"')}"
                   <span class="font-bold text-[#1A1A1A] text-xs">Tool Discovery: <code class="text-[#144B9E] font-bold">list_concepts()</code></span>
                   <span class="text-[10px] text-[#15803D] font-bold">152 Concepts (~24.8 KB)</span>
                 </div>
-                <p class="text-xs text-[#4A4A4A] font-medium">ADK tool returns complete policy ontology catalog. Agent reads high-density titles &amp; descriptions into scratchpad.</p>
+                <p class="text-xs text-[#4A4A4A] font-medium">ADK tool returns complete policy OKF bundle catalog. Agent reads high-density titles &amp; descriptions into scratchpad.</p>
               </div>
             </div>
 
